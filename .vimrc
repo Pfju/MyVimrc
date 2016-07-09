@@ -60,7 +60,7 @@ set autoindent
 set statusline=%t 	" Filename
 set statusline+=\ %y 	"FileType
 set statusline+=%=	" Switch to the right side
-set statusline+=Current:\ 
+set statusline+=Current:\
 set statusline+=%-4l	" Current line
 set statusline+=Total:\ 
 set statusline+=\ %-4L	" Total lines
@@ -100,4 +100,11 @@ augroup filetype_vim
 	autocmd FileType vim setlocal foldmethod=marker
 	autocmd FileType vim setlocal foldlevelstart=0
 augroup END
+" }}}
+" PTU file settings ---------- {{{
+augroup filetype_ptu
+	autocmd!
+	autocmd BufNewFile,BufRead *.ptu setlocal nowrap " wrap text files
+	autocmd BufNewFile,BufRead *.ptu setlocal number " wrap text files
+	autocmd BufNewFile,BufRead *.ptu setlocal autoindent " wrap text files
 " }}}
