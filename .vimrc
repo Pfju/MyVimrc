@@ -1,3 +1,6 @@
+" Plugins ---------- {{{
+execute pathogen#infect()
+" }}}
 " leader ---------- {{{
 let mapleader="-"
 let maplocalleader="#"
@@ -60,19 +63,26 @@ set autoindent
 set statusline=%t 	" Filename
 set statusline+=\ %y 	"FileType
 set statusline+=%=	" Switch to the right side
-set statusline+=Current:\
+set statusline+=Current:
 set statusline+=%-4l	" Current line
 set statusline+=Total:\ 
 set statusline+=\ %-4L	" Total lines
 " }}}
-" C file setting ---------- {{{
+" c,h, cpp file setting ---------- {{{
 augroup filetype_c
 	autocmd!
-	autocmd FileType c nnoremap <buffer> <localleader>c I//<esc>
-	autocmd FileType c nnoremap <buffer> <localleader>C I/*<esc>A*/<esc>
-	autocmd FileType c :iabbrev <buffer> iff if ()<left>
-	autocmd FileType c :iabbrev <buffer> eif elseif ()<left>
-	autocmd FileType c :iabbrev <buffer> ret return ();<left><left>
+	"prefix comment
+	autocmd FileType c,cpp,h nnoremap <buffer> <localleader>c I//<space><esc>
+	"wrap comment
+	autocmd FileType c,cpp,h nnoremap <buffer> <localleader>C I/*<space><esc>A<space>*/<esc>
+	"create empy test case
+	autocmd FileType c,cpp,h nnoremap <buffer> <localleader>ct Ivoid<space>test_replace(void)<CR>{<CR>}<space>/*<space>end<space>test_replace<space>*/<esc>
+	autocmd FileType c,cpp,h setlocal textwidth=78
+	autocmd FileType c,cpp,h setlocal shiftwidth=4
+	autocmd FileType c,cpp,h setlocal tabstop=4
+	autocmd FileType c,cpp,h :iabbrev <buffer> iff if ()<left><left>
+	autocmd FileType c,cpp,h :iabbrev <buffer> eif elseif ()<left>
+	autocmd FileType c,cpp,h :iabbrev <buffer> ret return ();<left><left>
 augroup END
 " }}}
 " Python file setting ---------- {{{
